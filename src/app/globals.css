@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #003a5d;
+  --color-primary-light: #004f80;
+  --color-primary-dark: #002a44;
+  --color-accent: #e63946;
+  --color-surface: #f8fafc;
+  --color-surface-dark: #1e293b;
+  --color-sidebar: #0f172a;
+  --color-sidebar-hover: #1e293b;
+  --color-sidebar-active: #003a5d;
+  --color-card: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-text-light: #94a3b8;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  --font-cairo: 'Cairo', 'Inter', sans-serif;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-sidebar: 4px 0 15px rgba(0, 0, 0, 0.15);
+  --shadow-glass: 0 8px 30px rgb(0, 0, 0, 0.04);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-cairo);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    min-height: 100vh;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-text-light);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 transition-all duration-200 hover:bg-sidebar-hover hover:text-white;
+  }
+
+  .sidebar-link.active {
+    @apply bg-sidebar-active text-white font-medium;
+  }
+
+  .data-table {
+    @apply w-full border-collapse overflow-hidden rounded-xl shadow-card bg-card;
+  }
+
+  .data-table th {
+    @apply bg-primary text-white px-4 py-3 text-sm font-semibold;
+  }
+
+  .data-table td {
+    @apply px-4 py-3 text-sm border-b border-border;
+  }
+
+  .data-table tr:hover td {
+    @apply bg-slate-50;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-2.5 rounded-lg border border-border bg-white text-text text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-text-muted mb-1.5;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 bg-primary text-white rounded-lg font-medium text-sm transition-all duration-200 hover:bg-primary-light hover:shadow-elevated active:scale-[0.98] cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 bg-slate-100 text-text rounded-lg font-medium text-sm transition-all duration-200 hover:bg-slate-200 active:scale-[0.98] cursor-pointer;
+  }
+
+  .btn-danger {
+    @apply px-6 py-2.5 bg-danger text-white rounded-lg font-medium text-sm transition-all duration-200 hover:bg-red-600 active:scale-[0.98] cursor-pointer;
+  }
+
+  .page-card {
+    @apply bg-card rounded-2xl shadow-card p-6;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-slate-200/50 rounded-2xl shadow-glass;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
