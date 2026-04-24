@@ -82,7 +82,7 @@ export default function PlansPage() {
                     </span>
                 ) : (
                     <span className="flex items-center gap-1 text-xs font-medium text-slate-400">
-                        <ShieldAlert className="w-3.5 h-3.5" /> Inactive
+                        <ShieldAlert className="w-3.5 h-3.5" /> {tCommon("inactive")}
                     </span>
                 )}
             </div>,

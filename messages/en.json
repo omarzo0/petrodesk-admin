@@ -111,13 +111,31 @@
     "common": {
         "next": "Next",
         "back": "Back",
-        "nextAr": "التالي",
-        "backAr": "السابق",
         "loading": "Loading...",
         "noData": "No data available",
         "error": "Something went wrong",
         "success": "Operation successful",
-        "actions": "Actions"
+        "actions": "Actions",
+        "stations": "Stations",
+        "search": "Search...",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "close": "Close",
+        "save": "Save",
+        "add": "Add",
+        "delete": "Delete",
+        "select": "Select...",
+        "confirmDelete": "Are you sure you want to delete this item?",
+        "active": "Active",
+        "inactive": "Inactive",
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "roles": {
+            "admin": "Admin",
+            "manager": "Manager",
+            "cashier": "Cashier",
+            "financial": "Financial"
+        }
     },
     "stationUsers": {
         "title": "Station Staff",
@@ -173,7 +191,9 @@
         "addFeature": "Add Feature",
         "isActive": "Active",
         "deactivate": "Deactivate Plan",
-        "deactivateMsg": "Are you sure you want to deactivate this plan? It will no longer be visible for new subscriptions."
+        "deactivateMsg": "Are you sure you want to deactivate this plan? It will no longer be visible for new subscriptions.",
+        "featureEnPlaceholder": "Feature (EN)",
+        "featureArPlaceholder": "Feature (AR)"
     },
     "subscriptions": {
         "title": "Subscription Management",
@@ -228,16 +248,19 @@
         "title": "Station Warnings",
         "issueWarning": "Issue Warning",
         "message": "Warning Message",
+        "station": "Station",
         "details": "Details",
         "severity": "Severity",
+        "status": "Status",
         "type": "Warning Type",
         "isGlobal": "Global Platform Warning",
         "targetRoles": "Target Roles",
         "isResolved": "Resolved",
         "resolve": "Mark as Resolved",
-        "security": "Security",
-        "financial": "Financial",
-        "operational": "Operational",
+        "violation": "Violation",
+        "missing_data": "Missing Data",
+        "overdue_payment": "Overdue Payment",
+        "announcement": "Announcement",
         "other": "Other",
         "low": "Low",
         "medium": "Medium",
@@ -245,7 +268,10 @@
         "critical": "Critical",
         "resolveMsg": "Has the issue that caused this warning been resolved?",
         "allWarnings": "All Warnings",
-        "stationSpecific": "Station Specific"
+        "stationSpecific": "Station Specific",
+        "open": "Active",
+        "severityAll": "Severity: All",
+        "statusAll": "Status: All"
     },
     "staff": {
         "title": "Platform Staff",

@@ -41,7 +41,7 @@ export default function PaymentsPage() {
 
     const columns = [
         t("date"),
-        tCommon("stations") || "Station",
+        tCommon("stations"),
         t("amount"),
         t("method"),
         t("status"),

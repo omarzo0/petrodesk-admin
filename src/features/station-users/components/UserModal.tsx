@@ -180,14 +180,14 @@ export default function UserModal({ isOpen, onClose, onSubmit, isSubmitting, ini
                         onClick={onClose}
                         className="btn-secondary"
                     >
-                        {tButtons("cancel")}
+                        {tCommon("cancel")}
                     </button>
                     <button
                         type="submit"
                         disabled={isSubmitting}
                         className="btn-primary"
                     >
-                        {isSubmitting ? tCommon("loading") : (initialData ? tButtons("save") : tButtons("add"))}
+                        {isSubmitting ? tCommon("loading") : (initialData ? tCommon("save") : tCommon("add"))}
                     </button>
                 </div>
             </form>

@@ -28,6 +28,9 @@ export const overviewApi = {
         });
         const result = await response.json();
         if (!result.success) throw new Error(result.message || "Failed to fetch overview");
-        return result.data;
+
+        // Handle case where data is an array [ { ... } ]
+        const data = Array.isArray(result.data) ? result.data[0] : result.data;
+        return data;
     }
 };

@@ -109,11 +109,33 @@
         "nameAr": "الاسم (عربي)"
     },
     "common": {
+        "next": "التالي",
+        "back": "السابق",
         "loading": "جاري التحميل...",
         "noData": "لا توجد بيانات",
         "error": "حدث خطأ ما",
         "success": "تمت العملية بنجاح",
-        "actions": "الإجراءات"
+        "actions": "الإجراءات",
+        "stations": "المحطات",
+        "search": "بحث...",
+        "cancel": "إلغاء",
+        "confirm": "تأكيد",
+        "close": "إغلاق",
+        "save": "حفظ",
+        "add": "إضافة",
+        "delete": "حذف",
+        "select": "اختر...",
+        "confirmDelete": "Are you sure you want to delete this item?",
+        "active": "نشط",
+        "inactive": "غير نشط",
+        "monthly": "شهري",
+        "yearly": "سنوي",
+        "roles": {
+            "admin": "مشرف",
+            "manager": "مدير",
+            "cashier": "كاشير",
+            "financial": "محاسب"
+        }
     },
     "stationUsers": {
         "title": "موظفي المحطة",
@@ -169,7 +191,9 @@
         "addFeature": "إضافة ميزة",
         "isActive": "نشط",
         "deactivate": "تعطيل الخطة",
-        "deactivateMsg": "هل أنت متأكد من تعطيل هذه الخطة؟ لن تظهر مجدداً للاشتراكات الجديدة."
+        "deactivateMsg": "هل أنت متأكد من تعطيل هذه الخطة؟ لن تظهر مجدداً للاشتراكات الجديدة.",
+        "featureEnPlaceholder": "الميزة (EN)",
+        "featureArPlaceholder": "الميزة (AR)"
     },
     "subscriptions": {
         "title": "إدارة الاشتراكات",
@@ -224,16 +248,19 @@
         "title": "تحذيرات المحطات",
         "issueWarning": "إصدار تحذير",
         "message": "رسالة التحذير",
+        "station": "المحطة",
         "details": "التفاصيل",
         "severity": "الخطورة",
+        "status": "الحالة",
         "type": "نوع التحذير",
         "isGlobal": "تحذير عام للمنصة",
         "targetRoles": "الأدوار المستهدفة",
         "isResolved": "تم الحل",
         "resolve": "تحديد كمحلول",
-        "security": "أمني",
-        "financial": "مالي",
-        "operational": "تشغيلي",
+        "violation": "مخالفة",
+        "missing_data": "بيانات ناقصة",
+        "overdue_payment": "تأخر دفع",
+        "announcement": "إعلان",
         "other": "آخر",
         "low": "منخفض",
         "medium": "متوسط",
@@ -241,7 +268,10 @@
         "critical": "خطير",
         "resolveMsg": "هل تم حل المشكلة التي تسببت في هذا التحذير؟",
         "allWarnings": "كل التحذيرات",
-        "stationSpecific": "خاص بمحطة"
+        "stationSpecific": "خاص بمحطة",
+        "open": "نشط",
+        "severityAll": "الخطورة: الكل",
+        "statusAll": "الحالة: الكل"
     },
     "staff": {
         "title": "موظفي المنصة",

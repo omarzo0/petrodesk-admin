@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "@/components/shared/Modal";
 import { Building2, User, ChevronRight, ChevronLeft, CheckCircle2 } from "lucide-react";
@@ -18,19 +18,39 @@ export default function StationModal({ isOpen, onClose, onSubmit, isSubmitting, 
     const tCommon = useTranslations("common");
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
-        name: initialData?.name || "",
-        nameAr: initialData?.nameAr || "",
-        code: initialData?.code || "",
-        address: initialData?.address || "",
-        phone: initialData?.phone || "",
-        logo: initialData?.logo || "",
-        owner: {
-            firstName: initialData?.owner?.firstName || "",
-            lastName: initialData?.owner?.lastName || "",
-            email: initialData?.owner?.email || "",
-            role: "admin"
-        }
+        name: "", nameAr: "", code: "", address: "", phone: "", logo: "",
+        owner: { firstName: "", lastName: "", email: "", role: "admin", phoneNumber: "", nationalId: "", password: "" }
     });
+
+    useEffect(() => {
+        if (isOpen) {
+            setStep(1);
+            if (initialData) {
+                setFormData({
+                    name: initialData.name || "",
+                    nameAr: initialData.nameAr || "",
+                    code: initialData.code || "",
+                    address: initialData.address || "",
+                    phone: initialData.phone || "",
+                    logo: initialData.logo || "",
+                    owner: {
+                        firstName: initialData.owner?.firstName || "",
+                        lastName: initialData.owner?.lastName || "",
+                        email: initialData.owner?.email || "",
+                        phoneNumber: initialData.owner?.phoneNumber || "",
+                        nationalId: initialData.owner?.nationalId || "",
+                        role: initialData.owner?.role || "admin",
+                        password: "" // Don't populate password during edit
+                    }
+                });
+            } else {
+                setFormData({
+                    name: "", nameAr: "", code: "", address: "", phone: "", logo: "",
+                    owner: { firstName: "", lastName: "", email: "", role: "admin", phoneNumber: "", nationalId: "", password: "" }
+                });
+            }
+        }
+    }, [isOpen, initialData]);
 
     const handleNext = () => setStep(step + 1);
     const handlePrev = () => setStep(step - 1);
@@ -38,11 +58,6 @@ export default function StationModal({ isOpen, onClose, onSubmit, isSubmitting, 
     const handleSubmit = async () => {
         await onSubmit(formData);
         onClose();
-        setStep(1);
-        setFormData({
-            name: "", nameAr: "", code: "", address: "", phone: "", logo: "",
-            owner: { firstName: "", lastName: "", email: "", role: "admin" }
-        });
     };
 
     const renderStepNumbers = () => (
@@ -50,7 +65,7 @@ export default function StationModal({ isOpen, onClose, onSubmit, isSubmitting, 
             {[1, 2].map((s) => (
                 <div key={s} className="flex items-center">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${step === s ? "bg-primary text-white scale-110 shadow-lg shadow-primary/20" :
-                            step > s ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-400"
+                        step > s ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-400"
                         }`}>
                         {step > s ? <CheckCircle2 className="w-6 h-6" /> : s}
                     </div>
@@ -87,7 +102,7 @@ export default function StationModal({ isOpen, onClose, onSubmit, isSubmitting, 
                     ) : (
                         <button
                             onClick={handleSubmit}
-                            disabled={isSubmitting || !formData.owner.email}
+                            disabled={isSubmitting || !formData.owner.email || !formData.owner.firstName || !formData.owner.phoneNumber || !formData.owner.nationalId || (!initialData && !formData.owner.password)}
                             className="btn-primary"
                         >
                             {isSubmitting ? tCommon("loading") : tCommon("save")}
@@ -177,14 +192,49 @@ export default function StationModal({ isOpen, onClose, onSubmit, isSubmitting, 
                                 />
                             </div>
                         </div>
-                        <div>
-                            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t("email")}</label>
-                            <input
-                                type="email"
-                                className="form-input"
-                                value={formData.owner.email}
-                                onChange={e => setFormData({ ...formData, owner: { ...formData.owner, email: e.target.value } })}
-                            />
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t("email")}</label>
+                                <input
+                                    type="email"
+                                    className="form-input"
+                                    value={formData.owner.email}
+                                    onChange={e => setFormData({ ...formData, owner: { ...formData.owner, email: e.target.value } })}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t("ownerPhone")}</label>
+                                <input
+                                    className="form-input"
+                                    value={formData.owner.phoneNumber}
+                                    onChange={e => setFormData({ ...formData, owner: { ...formData.owner, phoneNumber: e.target.value } })}
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t("nationalId")}</label>
+                                <input
+                                    className="form-input"
+                                    value={formData.owner.nationalId}
+                                    onChange={e => setFormData({ ...formData, owner: { ...formData.owner, nationalId: e.target.value } })}
+                                    required
+                                />
+                            </div>
+                            {!initialData && (
+                                <div>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t("password")}</label>
+                                    <input
+                                        type="password"
+                                        className="form-input"
+                                        value={formData.owner.password}
+                                        onChange={e => setFormData({ ...formData, owner: { ...formData.owner, password: e.target.value } })}
+                                        required
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

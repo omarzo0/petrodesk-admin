@@ -188,13 +188,13 @@ export default function PlanModal({ isOpen, onClose, onSave, plan, isLoading }: 
                                 <div className="flex-1 space-y-2">
                                     <input
                                         className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary/20 outline-none"
-                                        placeholder="Feature (EN)"
+                                        placeholder={t("featureEnPlaceholder") || "Feature (EN)"}
                                         value={feature}
                                         onChange={e => handleFeatureChange(index, e.target.value, 'en')}
                                     />
                                     <input
                                         className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary/20 outline-none text-right"
-                                        placeholder="الميزة (AR)"
+                                        placeholder={t("featureArPlaceholder") || "الميزة (AR)"}
                                         dir="rtl"
                                         value={formData.featuresAr[index] || ""}
                                         onChange={e => handleFeatureChange(index, e.target.value, 'ar')}
