@@ -97,7 +97,7 @@ export default function SubscriptionModal({ isOpen, onClose, onSave, subscriptio
                         <option value="">{tCommon("select") || "Select Plan"}</option>
                         {plans?.map((p: Plan) => (
                             <option key={p._id} value={p._id}>
-                                {locale === 'ar' && p.nameAr ? p.nameAr : p.name} — {p.price.toLocaleString()} EGP / {t(`plans.${p.billingCycle}`)}
+                                {locale === 'ar' && p.nameAr ? p.nameAr : p.name} — {p.price.toLocaleString()} EGP / {tCommon(p.billingCycle)}
                             </option>
                         ))}
                     </select>

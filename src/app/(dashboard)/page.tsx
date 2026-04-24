@@ -27,6 +27,7 @@ const COLORS = ["#003a5d", "#0088FE", "#00C49F", "#FFBB28"];
 export default function OverviewPage() {
     const t = useTranslations("overview");
     const tCommon = useTranslations("common");
+    const tSub = useTranslations("subscriptions");
     const { data: overview, isLoading, isError } = useOverview();
     const { data: payStats } = usePaymentStats();
     const { isAdmin, isSuperAdmin } = usePermissions();
@@ -62,42 +63,42 @@ export default function OverviewPage() {
     }
 
     // Map subscription statuses for the pie chart
-    const subscriptionPieData = Object.entries(overview.subscriptions).map(([status, count]) => ({
-        name: status,
+    const subscriptionPieData = Object.entries(overview.subscriptions || {}).map(([status, count]) => ({
+        name: tSub(status),
         value: count
     }));
 
     const cards = [
         {
             key: "totalStations",
-            value: overview.stations.total.toString(),
+            value: (overview.stations?.total || 0).toString(),
             icon: <Building2 className="w-6 h-6" />,
             color: "text-blue-600",
             bg: "bg-blue-600/10"
         },
         {
             key: "activeSubscriptions",
-            value: overview.subscriptions.active?.toString() || "0",
+            value: (overview.subscriptions?.active || 0).toString(),
             icon: <Wallet className="w-6 h-6" />,
             color: "text-emerald-500",
             bg: "bg-emerald-500/10"
         },
         {
             key: "openTickets",
-            value: overview.support.tickets.open?.toString() || "0",
+            value: (overview.support?.tickets?.open || 0).toString(),
             icon: <Ticket className="w-6 h-6" />,
             color: "text-rose-500",
             bg: "bg-rose-500/10"
         },
         ...(showFinances && overview.finances ? [{
             key: "totalRevenue",
-            value: `${overview.finances.totalRevenue.toLocaleString()} EGP`,
+            value: `${(overview.finances.totalRevenue || 0).toLocaleString()} EGP`,
             icon: <TrendingUp className="w-6 h-6" />,
             color: "text-amber-500",
             bg: "bg-amber-500/10"
         }] : [{
             key: "openWarnings",
-            value: overview.support.openWarnings.toString(),
+            value: (overview.support?.openWarnings || 0).toString(),
             icon: <ShieldAlert className="w-6 h-6" />,
             color: "text-amber-500",
             bg: "bg-amber-500/10"
@@ -204,7 +205,7 @@ export default function OverviewPage() {
             </div>
 
             {/* Recent Activity (Admin only) */}
-            {showFinances && overview.recentActivity.length > 0 && (
+            {showFinances && overview.recentActivity?.length > 0 && (
                 <div className="mb-8">
                     <h3 className="text-lg font-bold text-slate-800 mb-4">{t("recentActivity")}</h3>
                     <DataTable

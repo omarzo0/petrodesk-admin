@@ -99,7 +99,7 @@ export default function WarningsPage() {
                 {t(w.severity)}
             </span>,
             <span key="status" className={`badge ${w.isResolved ? 'badge-success' : 'badge-danger'}`}>
-                {w.isResolved ? t("isResolved") : t("open") || "Active"}
+                {w.isResolved ? t("isResolved") : t("open")}
             </span>,
             <div key="actions" className="flex items-center gap-2">
                 {!w.isResolved && (
@@ -121,7 +121,7 @@ export default function WarningsPage() {
     return (
         <div className="pb-8">
             <Header
-                titleKey="warnings.title"
+                titleKey="warnings"
                 extra={
                     <button onClick={() => setIsCreateOpen(true)} className="btn-danger flex items-center gap-2">
                         <Plus className="w-4 h-4" /> {t("issueWarning")}
@@ -147,7 +147,7 @@ export default function WarningsPage() {
                         value={severityFilter}
                         onChange={e => setSeverityFilter(e.target.value)}
                     >
-                        <option value="">{t("severity")}: All</option>
+                        <option value="">{t("severityAll")}</option>
                         <option value="low">{t("low")}</option>
                         <option value="medium">{t("medium")}</option>
                         <option value="high">{t("high")}</option>
@@ -161,8 +161,8 @@ export default function WarningsPage() {
                         value={statusFilter}
                         onChange={e => setStatusFilter(e.target.value)}
                     >
-                        <option value="">{t("status")}: All</option>
-                        <option value="pending">Active</option>
+                        <option value="">{t("statusAll")}</option>
+                        <option value="pending">{t("open")}</option>
                         <option value="resolved">{t("isResolved")}</option>
                     </select>
                 </div>

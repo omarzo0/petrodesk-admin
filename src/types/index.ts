@@ -148,7 +148,7 @@ export interface Warning {
     station?: Station;
     isGlobal: boolean;
     targetRoles: string[];
-    type: 'security' | 'financial' | 'operational' | 'other';
+    type: 'violation' | 'missing_data' | 'overdue_payment' | 'announcement' | 'other';
     severity: 'low' | 'medium' | 'high' | 'critical';
     message: string;
     details?: string;

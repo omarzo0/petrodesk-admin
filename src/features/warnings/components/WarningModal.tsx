@@ -21,7 +21,7 @@ export default function WarningModal({ isOpen, onClose, onSave, isLoading }: War
     const [formData, setFormData] = useState({
         message: "",
         details: "",
-        type: "operational",
+        type: "violation",
         severity: "medium",
         isGlobal: false,
         stationId: "",
@@ -51,7 +51,7 @@ export default function WarningModal({ isOpen, onClose, onSave, isLoading }: War
         setFormData({
             message: "",
             details: "",
-            type: "operational",
+            type: "violation",
             severity: "medium",
             isGlobal: false,
             stationId: "",
@@ -113,7 +113,7 @@ export default function WarningModal({ isOpen, onClose, onSave, isLoading }: War
                                     onClick={() => toggleRole(role)}
                                     className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${formData.targetRoles.includes(role) ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
                                 >
-                                    {role.charAt(0).toUpperCase() + role.slice(1)}
+                                    {tCommon(`roles.${role}`)}
                                 </button>
                             ))}
                         </div>
@@ -148,9 +148,10 @@ export default function WarningModal({ isOpen, onClose, onSave, isLoading }: War
                             value={formData.type}
                             onChange={e => setFormData({ ...formData, type: e.target.value })}
                         >
-                            <option value="operational">{t("operational")}</option>
-                            <option value="financial">{t("financial")}</option>
-                            <option value="security">{t("security")}</option>
+                            <option value="violation">{t("violation")}</option>
+                            <option value="missing_data">{t("missing_data")}</option>
+                            <option value="overdue_payment">{t("overdue_payment")}</option>
+                            <option value="announcement">{t("announcement")}</option>
                             <option value="other">{t("other")}</option>
                         </select>
                     </div>

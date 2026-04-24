@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import Image from "next/image";
-import { AuthProvider } from "@/hooks/useAuth";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { useAuthActions } from "@/features/auth/hooks/useAuthActions";
 
 function LoginForm() {
@@ -14,6 +14,14 @@ function LoginForm() {
     const t = useTranslations("login");
 
     const { login, isLoggingIn } = useAuthActions();
+    const { user, loading } = useAuth();
+    const router = useRouter();
+
+    React.useEffect(() => {
+        if (!loading && user) {
+            router.push("/");
+        }
+    }, [user, loading, router]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
