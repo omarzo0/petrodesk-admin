@@ -69,7 +69,7 @@ export default function SubscriptionsPage() {
                     {typeof sub.plan === 'object' ? sub.plan.name : sub.plan}
                 </span>
                 <span className="text-[10px] text-slate-400">
-                    {typeof sub.plan === 'object' ? `${sub.plan.price.toLocaleString()} EGP / ${tCommon(sub.plan.billingCycle) || sub.plan.billingCycle}` : ""}
+                    {typeof sub.plan === 'object' ? `${sub.plan.price.toLocaleString()} EGP / ${tCommon(sub.plan.billingCycle)}` : ""}
                 </span>
             </div>,
             <span key="status" className={`badge ${getStatusBadge(sub.status)}`}>
